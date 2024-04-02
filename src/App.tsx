@@ -8,7 +8,12 @@ function App() {
     const [count, setCount] = useState(0)
     const {tg} = useTelegram()
 
-    console.log(tg.initDataUnsafe)
+    const handleButtonClick =() => {
+        tg.sendData(JSON.stringify({
+            initDataUnsafe: tg.initDataUnsafe,
+            queryId: tg.initDataUnsafe.query_id,
+        }))
+    }
 
     return (
         <>
@@ -24,6 +29,9 @@ function App() {
             <div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
                     count is {count}
+                </button>
+                <button onClick={handleButtonClick}>
+                    Отправить данные
                 </button>
                 <p>
                     Edit <code>src/App.tsx</code> and save to test HMR
