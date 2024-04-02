@@ -1,17 +1,14 @@
-import {useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {useTelegram} from "./use-telegram.ts";
 
 function App() {
-    const [count, setCount] = useState(0)
     const {tg} = useTelegram()
 
-    const handleButtonClick =() => {
+    const handleButtonClick = () => {
         tg.sendData(JSON.stringify({
             initDataUnsafe: tg.initDataUnsafe,
-            queryId: tg.initDataUnsafe.query_id,
         }))
     }
 
@@ -27,9 +24,6 @@ function App() {
             </div>
             <h1>Vite + React</h1>
             <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
                 <button onClick={handleButtonClick}>
                     Отправить данные
                 </button>
